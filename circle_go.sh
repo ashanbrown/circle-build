@@ -12,6 +12,8 @@ REPO_LOCAL=${2:-CIRCLE_PROJECT_REPONAME}
 #This directory is cached by CircleCI:
 LOCAL_GOPATH=~/.go_workspace
 
+REPO_PATH=${LOCAL_GOPATH}/github.com/${CIRCLE_PROJECT_USERNAME}/${REPO_NAME}
+
 get_go() {
     mkdir -p download
     test -e download/${GODIST} || curl -o download/${GODIST} https://storage.googleapis.com/golang/${GODIST}
@@ -20,10 +22,9 @@ get_go() {
 }
 
 install_go() {
-    rm -rf ${LOCAL_GOPATH}/github.com/launchdarkly/${REPO_NAME}
-    mkdir -p ${LOCAL_GOPATH}/src/github.com/launchdarkly/
+    rm -rf ${REPO_PATH}
     rm -rf ${LOCAL_GOPATH}/.cache/govendor
-    ln -s ~/${REPO_LOCAL} ${LOCAL_GOPATH}/src/github.com/launchdarkly/${REPO_NAME}
+    ln -s ~/${REPO_LOCAL} ${REPO_PATH}
     GOPATH=${LOCAL_GOPATH}
     go get github.com/GoASTScanner/gas # get the Go AST scanner
     go get github.com/GeertJohan/fgt
@@ -58,5 +59,5 @@ go_build() {
 #changes the working dir to the go tool-friendly symlink in our local gopath.
 cd_to_proper_go_dir() {
     GOPATH=${LOCAL_GOPATH}
-    cd ${LOCAL_GOPATH}/src/github.com/launchdarkly/${REPO_NAME}
+    cd ${REPO_PATH}
 }
