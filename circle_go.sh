@@ -26,9 +26,7 @@ install_go() {
     rm -rf ${LOCAL_GOPATH}/.cache/govendor
     ln -s ~/${REPO_LOCAL} ${REPO_PATH}
     GOPATH=${LOCAL_GOPATH}
-    go get github.com/GoASTScanner/gas # get the Go AST scanner
-    go get github.com/GeertJohan/fgt
-    go get github.com/kardianos/govendor
+    go get github.com/GoASTScanner/gas github.com/kardianos/govendor
     go env
 }
 
@@ -36,7 +34,6 @@ install_go() {
 go_enforce() {
     cd_to_proper_go_dir
     set -uxe
-#    fgt govendor status
     GO_ENFORCE_CMD="gas -skip=**vendor/** -exclude=G101,G104 -out=${CIRCLE_ARTIFACTS}/gas-results.txt ./..."
     echo ${GO_ENFORCE_CMD}
     ${GO_ENFORCE_CMD}
