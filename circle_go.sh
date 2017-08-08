@@ -43,15 +43,15 @@ go_enforce() {
 go_test() {
     cd_to_proper_go_dir
     GO_TEST_CMD="govendor test -v +local"
-    echo ${GO_TEST_CMD}
-    ${GO_TEST_CMD}
+    echo ${GO_TEST_CMD} "$@"
+    ${GO_TEST_CMD} "$@"
 }
 
 go_build() {
     cd_to_proper_go_dir
     GO_BUILD_CMD="govendor build +local"
-    echo ${GO_BUILD_CMD}
-    ${GO_BUILD_CMD}
+    echo ${GO_BUILD_CMD} "$@"
+    ${GO_BUILD_CMD} "$@"
 }
 
 #changes the working dir to the go tool-friendly symlink in our local gopath.
