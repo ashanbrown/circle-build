@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ue
+set -uex
 
 # This script exists because CircleCI doesn't allow us to set any kind of global environment shared across
 # projects.
