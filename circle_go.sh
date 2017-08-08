@@ -24,6 +24,7 @@ get_go() {
 install_go() {
     rm -rf ${REPO_PATH}
     rm -rf ${LOCAL_GOPATH}/.cache/govendor
+    mkdir -p $(dirname $REPO_PATH)
     ln -s ~/${REPO_LOCAL} ${REPO_PATH}
     GOPATH=${LOCAL_GOPATH}
     go get github.com/GoASTScanner/gas github.com/kardianos/govendor
