@@ -12,7 +12,7 @@ REPO_LOCAL=${2:-$CIRCLE_PROJECT_REPONAME}
 #This directory is cached by CircleCI:
 LOCAL_GOPATH=~/.go_workspace
 
-REPO_PATH=${LOCAL_GOPATH}/github.com/${CIRCLE_PROJECT_USERNAME}/${REPO_NAME}
+REPO_PATH=${LOCAL_GOPATH}/src/github.com/${CIRCLE_PROJECT_USERNAME}/${REPO_NAME}
 
 get_go() {
     mkdir -p download
